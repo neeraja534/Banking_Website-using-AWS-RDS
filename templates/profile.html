@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Profile</h2>
+<p><strong>Username:</strong> {{ user.username }}</p>
+
+<!-- Update Password Form -->
+<section style="max-width: 400px;">
+    <h4>Change Password</h4>
+    <form id="updatePasswordForm" method="POST" action="{{ url_for('profile') }}" onsubmit="return validatePasswordUpdate()">
+        <div class="mb-3">
+            <label for="password" class="form-label">New Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter new password">
+            <div id="passwordError" class="text-danger mt-1" style="display:none;"></div>
+        </div>
+        <button type="submit" class="btn btn-warning">Update Password</button>
+    </form>
+</section>
+
+<hr>
+
+<!-- Delete Account Form -->
+<section style="max-width: 400px;">
+    <h4>Delete Account</h4>
+    <form id="deleteAccountForm" method="POST" action="{{ url_for('delete_account') }}" onsubmit="return validateDeleteAccount()">
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password to Delete Account</label>
+            <input type="password" id="confirmPassword" name="confirm_password" class="form-control" placeholder="Enter your password" required>
+            <div id="deleteError" class="text-danger mt-1" style="display:none;"></div>
+        </div>
+        <button type="submit" class="btn btn-danger mt-2">Delete Account</button>
+    </form>
+</section>
+
+<script>
+function validatePasswordUpdate() {
+    const password = document.getElementById('password').value.trim();
+    const errorDiv = document.getElementById('passwordError');
+    errorDiv.style.display = 'none';
+
+    if (password.length === 0) {
+        errorDiv.textContent = "Password cannot be empty.";
+        errorDiv.style.display = 'block';
+        return false;
+    }
+    if (password.length < 8) {
+        errorDiv.textContent = "Password must be at least 8 characters.";
+        errorDiv.style.display = 'block';
+        return false;
+    }
+    // Optional: check for letters and numbers
+    if (!/[a-zA-Z]/.test(password) || !/\d/.test(password)) {
+        errorDiv.textContent = "Password must contain letters and numbers.";
+        errorDiv.style.display = 'block';
+        return false;
+    }
+    return true;
+}
+
+function validateDeleteAccount() {
+    const password = document.getElementById('confirmPassword').value.trim();
+    const errorDiv = document.getElementById('deleteError');
+    errorDiv.style.display = 'none';
+
+    if (password.length === 0) {
+        errorDiv.textContent = "Please enter your password to confirm.";
+        errorDiv.style.display = 'block';
+        return false;
+    }
+    return confirm('Are you sure you want to delete your account? This action cannot be undone.');
+}
+</script>
+
+{% endblock %}

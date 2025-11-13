@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-card {
+        animation: fadeIn 1s ease-in-out;
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .forgot-link {
+        font-size: 0.9rem;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .forgot-link:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 576px) {
+        .login-card {
+            padding: 2rem 1.2rem;
+        }
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg p-4 login-card" style="width: 100%; max-width: 400px;">
+        <div class="text-center mb-4">
+            <img src="{{ url_for('static', filename='image/img.png') }}" alt="Bank Icon" style="width: 60px;">
+            <h2 class="mt-2">Login to Your Account</h2>
+        </div>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

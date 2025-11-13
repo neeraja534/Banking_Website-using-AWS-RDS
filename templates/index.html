@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to the Banking App</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-image: url("{{ url_for('static', filename='image/background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.5); /* semi-transparent white */
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #003366;
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin: 10px 15px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome to the Banking App</h1>
+        <p>Manage your money efficiently and securely.</p>
+        <div class="buttons">
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        </div>
+    </div>
+</body>
+</html>

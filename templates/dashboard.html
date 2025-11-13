@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to right, #dfe9f3, #ffffff);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .dashboard-wrapper {
+        max-width: 800px;
+        margin: 60px auto;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.6s ease;
+    }
+
+    .dashboard-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+
+    .dashboard-header h2 {
+        font-size: 2rem;
+        color: #2c3e50;
+    }
+
+    .user-info {
+        font-size: 1rem;
+        color: #34495e;
+    }
+
+    .balance-card {
+        background-color: #f1f9ff;
+        padding: 20px 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        border-left: 5px solid #007bff;
+    }
+
+    .balance-card h3 {
+        font-size: 1.5rem;
+        color: #007bff;
+        margin: 0;
+    }
+
+    .balance-card p {
+        font-size: 1.25rem;
+        color: #2c3e50;
+        margin-top: 5px;
+    }
+
+    .actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+
+    .actions a {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        border-radius: 8px;
+        text-align: center;
+        transition: background 0.3s ease;
+    }
+
+    .btn-transfer { background: #28a745; }
+    .btn-transfer:hover { background: #218838; }
+
+    .btn-view { background: #17a2b8; }
+    .btn-view:hover { background: #138496; }
+
+    .btn-deposit { background: #ffc107; color: #000; }
+    .btn-deposit:hover { background: #e0a800; }
+
+    .btn-withdraw { background: #dc3545; }
+    .btn-withdraw:hover { background: #c82333; }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+        .dashboard-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+    }
+</style>
+
+<div class="dashboard-wrapper">
+    <div class="dashboard-header">
+        <h2>Welcome, {{ username }}</h2>
+        <div class="user-info">💼 Banking Dashboard</div>
+    </div>
+
+    <div class="balance-card">
+        <h3>Account Balance</h3>
+        <p>₹{{ balance }}</p>
+    </div>
+
+    <div class="actions">
+        <a href="{{ url_for('transfer') }}" class="btn-transfer">💸 Transfer</a>
+        <a href="{{ url_for('transactions') }}" class="btn-view">📄 Transactions</a>
+
+    </div>
+</div>
+{% endblock %}
