@@ -1,0 +1,32 @@
+database/
+schema.sql        → table creation
+queries.sql       → CRUD operations
+sample_data.sql   → optional test data
+
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50),
+    password VARCHAR(100),
+    balance DECIMAL(10,2)
+);
+
+CREATE TABLE transactions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    sender_id INT,
+    receiver_id INT,
+    amount DECIMAL(10,2),
+    timestamp DATETIME
+);
+
+
+
+//Insert user
+INSERT INTO users (username, password, balance)
+VALUES ('neeraja', '1234', 1000);
+
+//Transfer money
+UPDATE users SET balance = balance - 500 WHERE id = 1;
+UPDATE users SET balance = balance + 500 WHERE id = 2;
+
+SELECT * FROM transactions;
